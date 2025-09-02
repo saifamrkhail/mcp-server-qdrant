@@ -126,6 +126,10 @@ docker run -p 8000:8000 \
   -e QDRANT_API_KEY="your-api-key" \
   -e COLLECTION_NAME="your-collection" \
   mcp-server-qdrant
+
+# Or use the docker-compose.yml
+# Build and start: 
+docker compose up --build -d
 ```
 
 > [!TIP]
