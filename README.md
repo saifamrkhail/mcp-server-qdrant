@@ -113,7 +113,7 @@ uvx mcp-server-qdrant --transport sse
 
 ### Using Docker
 
-A Dockerfile is available for building and running the MCP server:
+A Dockerfile is available for building and running the MCP server. Make sure qdrant docker container is up and running:
 
 ```bash
 # Build the container
@@ -128,7 +128,7 @@ docker run -p 8000:8000 \
   mcp-server-qdrant
 
 # Or use the docker-compose.yml
-# Build and start: 
+# Build and start:
 docker compose up --build -d
 ```
 
