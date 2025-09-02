@@ -4,20 +4,18 @@ services:
     image: mcp-server-qdrant:local
     container_name: mcp-server-qdrant
     environment:
-      # Point the server to the qdrant service
-      QDRANT_URL: http://localhost:6333/
-      # QDRANT_API_KEY: ""
-      # Set a default collection name (override as needed)
-      COLLECTION_NAME: qdrantdb
-      # Bind to all interfaces inside the container for SSE/HTTP transports
       FASTMCP_HOST: 0.0.0.0
-      # FASTMCP_PORT: "8000"  # override to change exposed port
-    command: ["uvx", "mcp-server-qdrant", "--transport", "stdio"]
+      QDRANT_URL: http://qdrant:6333
+      COLLECTION_NAME: qdrantdb
+      EMBEDDING_MODEL: sentence-transformers/all-MiniLM-L6-v2
+    command: ["uvx", "mcp-server-qdrant", "--transport", "streamable-http"]
     ports:
       - "8000:8000"
     restart: unless-stopped
+    #depends_on:
+    #  qdrant:
+    #    condition: service_healthy
 
-volumes:
-  qdrant_storage:
-    driver: local
-
+#volumes:
+  #qdrant_storage:
+  #  driver: local
