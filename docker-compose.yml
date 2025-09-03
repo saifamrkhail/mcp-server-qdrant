@@ -3,6 +3,7 @@ services:
     build: .
     image: mcp-server-qdrant:local
     container_name: mcp-server-qdrant
+    networks: [qdrantnet]
     environment:
       FASTMCP_HOST: 0.0.0.0
       QDRANT_URL: http://qdrant:6333
@@ -12,10 +13,13 @@ services:
     ports:
       - "8000:8000"
     restart: unless-stopped
-    #depends_on:
-    #  qdrant:
-    #    condition: service_healthy
+
+networks:
+  qdrantnet:
+    external: true
 
 #volumes:
   #qdrant_storage:
   #  driver: local
+
+
